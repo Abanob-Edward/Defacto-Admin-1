@@ -1,0 +1,71 @@
+<ul class="list-unstyled ps-0">
+  <li class="mb-1">
+    <button class="btn align-items-center rounded" routerLink="/Home">
+      <i Class="fas fa-home m-2"></i>Admin DashBoard
+    </button>
+  </li>
+
+
+  <li class="mb-1">
+    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+      data-bs-target="#category-collapse" aria-expanded="false">
+      <i Class="fas fa-folder-open m-2"></i>Category
+    </button>
+    <div class="collapse" id="category-collapse">
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li class="mx-4 my-2 "><i class="fas fa-list m-2"></i><a routerLink="/Categories"
+            class=" rounded text-decoration-none">All Categories</a></li>
+        <li class="mx-4 my-2 "><i class="fas fa-plus m-2"></i><a routerLink="/AddCategory"
+            class=" rounded text-decoration-none">Add Category</a></li>
+
+      </ul>
+    </div>
+  </li>
+  <li class="mb-1">
+    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+      data-bs-target="#product-collapse" aria-expanded="false">
+      <i class="fas fa-grip-horizontal m-2"></i>Product
+    </button>
+    <div class="collapse" id="product-collapse">
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li class="mx-4 my-2 "><i class="fas fa-list m-2"></i><a routerLink="/GetAllProducts"
+            class=" rounded text-decoration-none">All Products</a></li>
+        <li class="mx-4 my-2 "><i class="fas fa-plus m-2"></i><a routerLink="/AddProduct"
+            class=" rounded text-decoration-none">Add Product</a></li>
+        <li class="mx-4 my-2 "><i class="fa-solid fa-pencil me-2"></i><a routerLink="/UpdateProduct"
+            class=" rounded text-decoration-none">Update Product</a></li>
+        <li class="mx-4 my-2 "><i class="fa-solid fa-trash-can me-2"></i><a routerLink="/DeletProduct"
+            class=" rounded text-decoration-none">Delete Product</a></li>
+
+      </ul>
+    </div>
+
+  </li>
+  <li class="mb-1">
+    <button class="btn align-items-center rounded " routerLink="/Orders">
+      <i Class="fas fa-shopping-cart m-2"></i>Orders
+    </button>
+  </li>
+  <li class="mb-1">
+    <button class="btn align-items-center rounded " routerLink="/Reviews">
+      <i Class="fas fa-star m-2"></i>Reviews
+    </button>
+  </li>
+
+  <li class="mb-1">
+    <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+      data-bs-target="#user-collapse" aria-expanded="false">
+      <i class="fas fa-user m-2"></i>User
+    </button>
+    <div class="collapse" id="user-collapse">
+      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li class="mx-4 my-2 "><i class="fas fa-users m-2"></i><a routerLink="/Users"
+            class="rounded text-decoration-none">All User</a></li>
+        <li class="mx-4 my-2 "><i class="fas fa-plus m-2"></i><a routerLink="/CreateUserAccount"
+            class="rounded text-decoration-none">Create Account</a></li>
+      </ul>
+    </div>
+     
+  </li>
+      
+</ul>

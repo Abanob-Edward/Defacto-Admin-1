@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-product',
+  selector: 'app-side-nav',
   standalone: true,
   imports: [RouterLink],
-  templateUrl: './product.component.html',
-  styleUrl: './product.component.css'
+  templateUrl: './side-nav.component.html',
+  styleUrl: './side-nav.component.css'
 })
-export class ProductComponent {
+export class SideNavComponent {
 
 }

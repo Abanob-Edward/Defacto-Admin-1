@@ -4,24 +4,28 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+ }
 .side-nav {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-
   min-height: 100vh;
-  width: 25%;
-  color: white;
+  width: 22%;
+  color: #000;
   position: fixed;
   left: 0;
   transition: width 0.3s;
-  background-color: #113c60;
+  background-color: #f8f8f9;
+  padding-top: 80px
 }
 
 .main-content {
-  position: fixed;
-
   min-height: 100vh;
   margin-left: 25%;
+  padding-top: 80px
 }
 @media screen and (max-width: 768px) {
   .side-nav {
