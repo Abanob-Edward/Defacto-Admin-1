@@ -1,16 +1,16 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
 import { IProduct } from '../../../Models/iproduct';
 import { ApiProductsService } from '../../../services/api-products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-get-all-products',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './get-all-products.component.html',
   styleUrl: './get-all-products.component.css'
 })
-export class GetAllProductsComponent implements OnChanges, OnInit {
+export class GetAllProductsComponent  /*implements OnChanges, OnInit*/ {
   filteredProducts: IProduct[] = [];
   @Input() recivedCatId: number = 0;
 
@@ -37,3 +37,4 @@ export class GetAllProductsComponent implements OnChanges, OnInit {
   }
 
 }
+
