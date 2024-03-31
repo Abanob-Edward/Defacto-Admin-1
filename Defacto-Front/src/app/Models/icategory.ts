@@ -1,6 +1,7 @@
 export interface ICategory {
-    ID: number;
-    Name: string;
-    subCategory?: any;
-    Description?: string;
+    id: number;
+    name: string;
+    subCategory: number | null;
+    description: string | null;
+    categoryImage: File | null;
 }

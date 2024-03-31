@@ -9,54 +9,46 @@ import { ICategory } from '../Models/icategory';
 })
 export class CategoryService {
 
-  // private apiUrl = 'http://localhost:3000/api/categories'; // Adjust the base URL as needed
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
 
-  addCategory(category: ICategory): Observable<ICategory> {
-    return this.http.post<ICategory>(`${environment.apiUrl}/categories`, category);
+  getAll(): Observable<ICategory[]> {
+    return this.http.get<ICategory[]>(`${this.apiUrl}/api/Category`);
   }
 
 
-  getAllCategoriesWithPagination(pageNumber: number, pageSize: number): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(`${environment.apiUrl}/categories`, {
-      params: {
-        pageNumber: pageNumber.toString(),
-        pageSize: pageSize.toString()
-      }
-    });
+  createCategory(formData: FormData): Observable<ICategory> {
+    return this.http.post<ICategory>(`${this.apiUrl}/api/Category`, formData);
   }
 
 
-  getCategoryById(id: number): Observable<ICategory> {
-    return this.http.get<ICategory>(`${environment.apiUrl}/categories/${id}`);
+  updateCategory(formData: FormData): Observable<ICategory> {
+    const id = formData.get('id');
+    return this.http.put<ICategory>(`${this.apiUrl}/api/Category`, formData);
+   }   
+
+  getCategoriesByGender(gender: 'Male' | 'Female' | null, page: number, pageSize: number): Observable<ICategory[]> {
+    return this.http.get<ICategory[]>(`${this.apiUrl}/categories/gender/${gender}?page=${page}&pageSize=${pageSize}`);
   }
 
-
-  updateCategory(id: number, category: ICategory): Observable<ICategory> {
-    return this.http.put<ICategory>(`${environment.apiUrl}/categories/${id}`, category);
+  getCategoryByID(id: number): Observable<ICategory> {
+    return this.http.get<ICategory>(`${this.apiUrl}/categories/${id}`);
   }
 
-
-  deleteCategory(id: number): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/categories/${id}`);
+  getAllCategories(page: number, pageSize: number): Observable<ICategory[]> {
+    return this.http.get<ICategory[]>(`${this.apiUrl}/categories?page=${page}&pageSize=${pageSize}`);
   }
 
-
-  deleteAll(): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/categories`);
+  hardDelete(id: number,name:string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/api/Category/HardDelete?ID=${id}&Name=${name}`);
   }
 
-
-  getCategoriesByGenderWithPagination(gender: string, pageNumber: number, pageSize: number): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(`${environment.apiUrl}/categories`, {
-      params: {
-        gender: gender,
-        pageNumber: pageNumber.toString(),
-        pageSize: pageSize.toString()
-      }
-    });
+  softDelete(id: number): Observable<any> {
+    const body = { isDeleted: true };
+    return this.http.patch(`${this.apiUrl}/categories/${id}/soft-delete`, body);
   }
+
 }
 

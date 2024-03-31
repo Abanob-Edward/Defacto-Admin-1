@@ -2,10 +2,13 @@ export interface IProduct {
   id: number;
   title: string;
   isApproved: boolean;
-  productGender: number;
-  description: string;
-  categoryName: string;
+  productGender: number | null;
   categoryId: number;
-  vendorName: string;
+  code?: string;
+  description: string;
+  productImage1: File|null;
+  productImage2?: File|null;
+  productImage3?: File|null;
+  productImage4?: File|null;
   vendorId: string;
 }
