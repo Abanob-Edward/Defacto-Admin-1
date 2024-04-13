@@ -1,0 +1,90 @@
+<!-- <div class="container">
+  <div class="row">
+      <div class="col-md-12">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let category of categories">
+                      <td>{{ category.name }}</td>
+                      <td>{{ category.description }}</td>
+                      <td>
+                          <button type="button" class="btn btn-primary" [routerLink]="['/update-category', category.id]" [state]="{ category: category }">Update</button>
+                          <button class="btn btn-danger" (click)="hardDelete(category.id)">Delete</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+      <li class="page-item">
+          <button class="page-link" (click)="previousPage()">Previous</button>
+      </li>
+      <li class="page-item">
+          <button class="page-link" (click)="nextPage()">Next</button>
+      </li>
+  </ul>
+</nav> -->
+
+
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <!-- <th>ID</th> -->
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Description</th>
+                        <!-- <th>Arabic Name</th> -->
+                        <!-- <th>Arabic Description</th> -->
+                        <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let category of categories">
+                        <td>
+                            <!-- Display the image using the base64 string -->
+                            <!-- <img src="data:image/png;base64,'{{category.image}}'" alt="Category Image"> -->
+                            <!-- <img *ngFor="let image of product.imagesArr" class="img-thumbnail" [src]="'data:image/png;base64,' + image" alt="Product Image"> -->
+                            <!-- <img *ngIf="category.image" [src]="'data:image/png;base64,' +'{{category.image}}'" alt="Category Image" /> -->
+                            <img class="img-thumbnail" [src]="'data:image/png;base64,' + category.image" alt=""
+                                height="100px" width="100px" />
+                        </td>
+                        <td>{{ category.name }}</td>
+                        <!-- <td>{{ category.subCategory }}</td> -->
+                        <td>{{ getSubCategoryName(category.subCategory) }}</td>
+                        <td>{{ category.description }}</td>
+                        <!-- <td>{{ category.ar_Name }}</td> -->
+                        <!-- <td>{{ category.ar_Description }}</td> -->
+                        <td>
+                            <button type="button" class="btn btn-primary"
+                                [routerLink]="['/update-category', category.id]"
+                                [state]="{ category: category }">Update</button>&nbsp;
+                            <button class="btn btn-danger" (click)="Delete(category.id)">&nbsp;Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+    <!-- </div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <button class="page-link" (click)="previousPage()">Previous</button>
+        </li>
+        <li class="page-item">
+            <button class="page-link" (click)="nextPage()">Next</button>
+        </li>
+    </ul>
+</nav> -->

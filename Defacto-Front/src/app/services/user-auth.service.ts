@@ -12,17 +12,20 @@ export class UserAuthService {
  login(loginData: ILogin): Observable<ILogin> {
     return this.http.post<ILogin>('http://localhost:5025/api/Account/login', loginData).pipe(
       tap(response => {
+         if (!response.stringToken) {
+            throw new Error('Authentication failed: stringToken not found');
+         }
+         localStorage.setItem('stringToken', response.stringToken);
+        })
 
-        localStorage.setItem('stringtoken', response.stringtoken);
-      })
     );
  }
 
  logout() {
-    localStorage.removeItem("stringtoken");
+    localStorage.removeItem("stringToken");
  }
 
  isLoggedIn(): boolean {
-    return localStorage.getItem("stringtoken") ? true : false;
+    return localStorage.getItem("stringToken") ? true : false;
  }
 }

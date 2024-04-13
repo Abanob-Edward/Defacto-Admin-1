@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <!-- <h2 class="mb-4">Product Details</h2> -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="product-image" style="float: left; margin-right: 15px;">
+        <img class="img-thumbnail" [src]="'data:image/png;base64,' + product.imagesArr[0]" alt="Product Image"
+          height="100px" width="100px">
+      </div>
+      <div class="product-details">
+        <h4 class="card-title">{{ product.title }}</h4><br>
+        <p class="card-title"><strong>Vendor:</strong> {{ product.vendorName }}</p><br>
+
+        <p class="card-text">
+          <strong>Description:</strong> {{ product.description }}<br>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="items.length > 0; else noItems">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <!-- <th>Item ID</th> -->
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Size</th>
+          <th>Color</th>
+          <!-- <th>Is For Defacto</th> -->
+          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <!-- <td>{{ item.id }}</td> -->
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.sizeName }}</td>
+          <td>{{ item.colorName }}</td>
+          <td>
+            <button class="btn btn-primary" [routerLink]="['/update-item', item.id]"
+              [state]="{ item: item }">Update</button>&nbsp;
+            <button class="btn btn-danger" (click)="Delete(item.id)">&nbsp;Delete</button>
+          </td>
+          <!-- <td>{{ item.isForDefacto ? 'Yes' : 'No' }}</td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noItems>
+    <p class="text-center">No items found for this product.</p>
+  </ng-template>
+  <button class="btn btn-success" [routerLink]="['/add-item', product.id]" [state]="{ product: product }">Add
+    Item</button>
+</div>

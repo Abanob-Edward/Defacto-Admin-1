@@ -1,0 +1,62 @@
+<div class="container">
+  <h5 class="mb-4">Add New User</h5>
+  <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+       <!-- User Name -->
+       <div class="mb-3">
+         <label for="userName" class="form-label">User Name</label>
+         <input type="text" id="userName" name="userName" class="form-control" required [(ngModel)]="newAccount.userName">
+       </div>
+       <!-- Email -->
+       <div class="mb-3">
+         <label for="email" class="form-label">Email</label>
+         <input type="email" id="email" name="email" class="form-control" [(ngModel)]="newAccount.email">
+       </div>
+       <!-- Role -->
+       <div class="mb-3">
+         <label for="role" class="form-label">Role</label>
+         <select id="role" name="role" class="form-select" [(ngModel)]="newAccount.role">
+           <option *ngFor="let role of roles" [value]="role.name">{{role.name}}</option>
+         </select>
+       </div>
+       <!-- Image -->
+       <div class="mb-3">
+         <label for="image" class="form-label">Image</label>
+         <input type="file" id="image" name="image" accept="image/*" class="form-control" (change)="handleImageInput($event)">
+       </div>
+       <!-- Password -->
+       <div class="mb-3">
+         <label for="password" class="form-label">Password</label>
+         <input type="password" id="password" name="password" class="form-control" required [(ngModel)]="newAccount.password">
+       </div>
+       <!-- Street Address -->
+       <div class="mb-3">
+         <label for="streetAddress" class="form-label">Street Address</label>
+         <input type="text" id="streetAddress" name="streetAddress" class="form-control" [(ngModel)]="newAccount.streetAddress">
+       </div>
+       <!-- City -->
+       <div class="mb-3">
+         <label for="city" class="form-label">City</label>
+         <input type="text" id="city" name="city" class="form-control" [(ngModel)]="newAccount.city">
+       </div>
+       <!-- State -->
+       <div class="mb-3">
+         <label for="state" class="form-label">State</label>
+         <input type="text" id="state" name="state" class="form-control" [(ngModel)]="newAccount.state">
+       </div>
+       <!-- Zip Code -->
+       <div class="mb-3">
+         <label for="zipCode" class="form-label">Zip Code</label>
+         <input type="text" id="zipCode" name="zipCode" class="form-control" [(ngModel)]="newAccount.zipCode">
+       </div>
+       <!-- Country -->
+       <div class="mb-3">
+         <label for="country" class="form-label">Country</label>
+         <input type="text" id="country" name="country" class="form-control" [(ngModel)]="newAccount.country">
+       </div>
+       <!-- Submit Buttons -->
+       <div class="mb-3">
+         <button routerLink="/GetAllsers" type="submit" class="btn btn-primary me-3" [disabled]="!userForm.form.valid">Save</button>
+         <a routerLink="/GetAllUsers" class="btn btn-secondary">Cancel</a>
+       </div>
+  </form>
+ </div>

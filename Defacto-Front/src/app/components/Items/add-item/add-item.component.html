@@ -1,0 +1,29 @@
+<form (ngSubmit)="addItem()">
+  <div class="form-group">
+     <label for="size">Size</label>
+     <select class="form-control" id="size" [(ngModel)]="item.sizeID" name="size">
+       <option *ngFor="let size of sizes" [value]="size.id">{{ size.name }}</option>
+     </select>
+  </div>
+  <div class="form-group">
+     <label for="color">Color</label>
+     <select class="form-control" id="color" [(ngModel)]="item.colorID" name="color">
+       <option *ngFor="let color of colors" [value]="color.id">{{ color.name }}</option>
+     </select>
+  </div>
+  <div class="form-group">
+     <label for="quantity">Quantity</label>
+     <input type="number" class="form-control" id="quantity" [(ngModel)]="item.quantity" name="quantity">
+  </div>
+  <div class="form-group">
+     <label for="price">Price</label>
+     <input type="number" class="form-control" id="price" [(ngModel)]="item.price" name="price">
+  </div>
+  <!-- <div class="form-group">
+     <label for="isForDefacto">Is For Defacto</label>
+     <input type="checkbox" class="form-control" id="isForDefacto" [(ngModel)]="item.isForDefacto" name="isForDefacto">
+  </div> -->
+  <br>
+  <button type="submit" class="btn btn-primary">Add Item</button>
+ </form>
+ 

@@ -1,49 +1,77 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
-import { IProduct } from '../Models/iproduct';
+import { IItem } from '../Models/iitem';
+import { ApiItem } from '../Models/api-item';
+import { ApiIProduct } from '../Models/api-iproduct';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItemService {
-
   constructor(private http: HttpClient) { }
 
-  getByID(id: number): Observable<IProduct> {
-    return this.http.get<IProduct>(`${environment.apiUrl}/items/${id}`);
+  getProductById(productId: number): Observable<ApiIProduct> {
+    return this.http.get<ApiIProduct>(`${environment.apiUrl}/api/product/GetProductByID/${productId}`);
+  }
+
+  getAllPagination(pageNumber: number, pageSize: number): Observable<ApiItem> {
+    const url = `http://localhost:5025/api/Item/getAllItemsWithPaging/${pageNumber}/${pageSize}`;
+    return this.http.get<ApiItem>(url);
   }
 
 
-  getAllPagination(pageNumber: number, pageSize: number): Observable<IProduct[]> {
-    let params = new HttpParams()
-      .set('page', pageNumber.toString())
-      .set('size', pageSize.toString());
-    return this.http.get<IProduct[]>(`${environment.apiUrl}/items`, { params });
+  getAllItemsWithPaging(page: number, pageSize: number): Observable<ApiItem> {
+    const url = `http://localhost:5025/api/Item/getAllItemsWithPaging/${page}/${pageSize}`;
+    return this.http.get<ApiItem>(url);
   }
 
-  getListOfItemForProduct(productId: number, pageNumber: number, pageSize: number): Observable<IProduct[]> {
-    let params = new HttpParams()
-      .set('page', pageNumber.toString())
-      .set('size', pageSize.toString());
-    return this.http.get<IProduct[]>(`${environment.apiUrl}/items/product/${productId}`, { params });
+
+  getItemsByProductId(productId: number, items: number, pagenumber: number): Observable<ApiItem> {
+    let params = new HttpParams();
+    params = params.set('items', items.toString());
+    params = params.set('pagenumber', pagenumber.toString());
+
+    const url = `http://localhost:5025/api/Item/GetItemlistFotProduct/${productId}`;
+    return this.http.get<ApiItem>(url, { params });
   }
 
-  create(item: IProduct): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/items`, item);
+
+  addItem(item: IItem): Observable<IItem> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache'
+    });
+
+    const options = {
+      headers: httpHeaders
+    };
+
+    return this.http.post<IItem>('http://localhost:5025/api/Item', item, options);
   }
 
-  update(id: number, item: IProduct): Observable<any> {
-    return this.http.put(`${environment.apiUrl}/items/${id}`, item);
+
+  updateItem(item: IItem): Observable<IItem> {
+    const httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache'
+    });
+
+    const options = {
+      headers: httpHeaders
+    };
+
+    return this.http.put<IItem>('http://localhost:5025/api/Item', item, options);
   }
 
-  delete(id: number): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/items/${id}`);
+
+  SDelete(id: number): Observable<any> {
+    return this.http.delete(`http://localhost:5025/api/Item/SoftDelete?itemID=${id}`);
   }
+
 
   deleteAll(): Observable<any> {
     return this.http.delete(`${environment.apiUrl}/items`);
   }
 }
-

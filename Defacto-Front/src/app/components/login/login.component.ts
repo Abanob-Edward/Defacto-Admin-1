@@ -1,28 +1,36 @@
 import { Component } from '@angular/core';
-
-import { UserAuthService } from '../../services/user-auth.service'; // Ensure the path is correct
 import { ILogin } from '../../Models/ilogin'; // Ensure the path is correct
 import { FormsModule } from '@angular/forms';
+
+import { UserAuthService } from '../../services/user-auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule],
- templateUrl: './login.component.html',
- styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
- constructor(private userAuthService: UserAuthService) {} // Corrected service name
+  constructor(private userauth: UserAuthService,private router:Router) { }
 
- loginObj: ILogin = {
-    "email": "",
-    "password": ""
- };
+  loginObj: ILogin = {
+    email: '',
+    password: '',
+  };
 
- onLogin() {
-    this.userAuthService.login(this.loginObj.email,this.loginObj.password).subscribe(
-      () => console.log('Login successful'),
-      error => console.error('Error:', error)
+  onLogin() {
+    this.userauth.login(this.loginObj).subscribe(
+      () => {
+        this.router.navigateByUrl("/OrderChart")
+        alert('Login Success');
+      },
+      error => {
+        console.error('Login failed', error);
+        alert('Login failed. Please check your credentials and try again.');
+      }
     );
- }
+  }
+
 }

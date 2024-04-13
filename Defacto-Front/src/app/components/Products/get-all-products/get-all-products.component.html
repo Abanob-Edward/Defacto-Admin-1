@@ -1,1 +1,106 @@
-<p>get-all-products works!</p>
+<!-- <div class="container">
+  <div class="row">
+     <div class="col-md-4">
+       <div class="form-group">
+         <label for="categorySelect">
+           <h3>Select Category :</h3>
+         </label>
+         <select id="categorySelect" class="form-select-lg" [(ngModel)]="selectedCategoryId" (change)="selectedCategoryId !== null ? filterByCategory(selectedCategoryId) : filterByCategory(0)">
+          <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+          <option value="0">All</option>
+         </select>
+       </div>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-md-12">
+       <table class="table table-striped">
+         <thead>
+           <tr>
+             <th>Image</th>
+             <th>Title</th>
+             <th>Description</th>
+             <th>Actions</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr *ngFor="let product of products">
+             <td><img  class="img-thumbnail" src="data:image/jpg;base64, string" [src]="product.image" alt="Product Image"></td>
+             <td>{{product.title}}</td>
+             <td>{{product.description}}</td>
+             <td>
+               <button class="btn btn-primary" [routerLink]="['/UpdateProduct', product.id]" [state]="{ product: product }">Update</button>
+               <button class="btn btn-danger" (click)="hardDelete(product.id)">Delete</button>
+               <button class="btn btn-dark m-2" [routerLink]="['/ProductInItem', product.id]" [state]="{ product: product }">Item</button>
+             </td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+  </div>
+ </div> -->
+
+
+<div class=" p-3">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="categorySelect">
+          <h5 class="m-2">Select Category :</h5>
+        </label>
+        <select id="categorySelect" class="form-select-lg" [(ngModel)]="selectedCategoryId"
+          (change)="selectedCategoryId !== null ? filterByCategory(selectedCategoryId) : filterByCategory(0)">
+          <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+          <option value="0">All</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;Image</th>
+            <th>&nbsp;&nbsp;Title</th>
+            <th>Status</th>
+            <!-- <th>Gender</th> -->
+            <!-- <th>Code</th> -->
+            <th>Description</th>
+            <th>Category</th>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vendor</th>
+            <!-- <th>Arabic Title</th> -->
+            <!-- <th>Arabic Description</th> -->
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>
+              <!-- Display the images using the base64 strings -->
+              <img class="img-thumbnail" [src]="'data:image/png;base64,' + product.imagesArr[0]" alt="Product Image"
+                height="100px" width="100px">
+              <!-- <img class="image" [src]="'data:image/png;base64,' + category.image" alt="" height="100px" width="100px" /> -->
+            </td>
+            <td>{{product.title}}</td>
+            <td>{{product.isApproved ? 'Approved' : 'Not Approved'}}</td>
+            <!-- <td>{{product.productGender}}</td> -->
+            <!-- <td>{{product.code}}</td> -->
+            <td>{{product.description}}</td>
+            <td>{{product.categoryName}}</td>
+            <td>{{product.vendorName}}</td>
+            <!-- <td>{{product.ar_Title}}</td> -->
+            <!-- <td>{{product.ar_Description}}</td> -->
+            <td>
+              <button class="btn btn-primary" [routerLink]="['/UpdateProduct', product.id]"
+                [state]="{ product: product }">Update</button>&nbsp;
+              <button class="btn btn-danger" (click)="Delete(product.id)">&nbsp;Delete</button>
+              <button class="btn btn-dark m-2" [routerLink]="['/ProductInItem', product.id]"
+                [state]="{ product: product }">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

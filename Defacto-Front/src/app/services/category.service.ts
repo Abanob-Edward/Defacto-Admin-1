@@ -1,62 +1,71 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { ICategory } from '../Models/icategory';
+import { ICategoryResponse } from '../Models/icategory-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  // private apiUrl = 'http://localhost:3000/api/categories'; // Adjust the base URL as needed
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 
 
-  addCategory(category: ICategory): Observable<ICategory> {
-    return this.http.post<ICategory>(`${environment.apiUrl}/categories`, category);
+  getAll(): Observable<ICategoryResponse[]> {
+    return this.http.get<ICategoryResponse[]>(`${this.apiUrl}/api/Category`);
   }
 
 
-  getAllCategoriesWithPagination(pageNumber: number, pageSize: number): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(`${environment.apiUrl}/categories`, {
-      params: {
-        pageNumber: pageNumber.toString(),
-        pageSize: pageSize.toString()
-      }
-    });
+  createCategory(formData: FormData): Observable<ICategory> {
+
+    return this.http.post<ICategory>(`${this.apiUrl}/api/Category`, formData);
   }
 
 
-  getCategoryById(id: number): Observable<ICategory> {
-    return this.http.get<ICategory>(`${environment.apiUrl}/categories/${id}`);
+  // updateCategory(categoryId: number, formData: FormData): Observable<ICategory> {
+  //   const params = new HttpParams()
+  //     //  .set('ID', formData.get('id')?.toString() ?? '')
+  //     .set('Name', formData.get('name')?.toString() ?? '')
+  //     .set('subCategory', formData.get('subCategory')?.toString() ?? '')
+  //     .set('Description', formData.get('description')?.toString() ?? '');
+
+  //   const url = `${this.apiUrl}/api/Category?ID=${categoryId}&${params.toString()}`;
+
+  //   return this.http.put<ICategory>(url, formData);
+  // }
+
+
+  updateCategory(id: number, formData: FormData): Observable<any> {
+    const url = `${this.apiUrl}/api/Category?ID=${id}`;
+    return this.http.put(url, formData);
   }
 
 
-  updateCategory(id: number, category: ICategory): Observable<ICategory> {
-    return this.http.put<ICategory>(`${environment.apiUrl}/categories/${id}`, category);
+  getCategoriesByGender(gender: 'Male' | 'Female' | null, page: number, pageSize: number): Observable<ICategory[]> {
+    return this.http.get<ICategory[]>(`${this.apiUrl}/categories/gender/${gender}?page=${page}&pageSize=${pageSize}`);
+  }
+
+  getCategoryByID(id: number): Observable<ICategory> {
+    return this.http.get<ICategory>(`${this.apiUrl}/categories/${id}`);
+  }
+
+  getAllCategories(page: number, pageSize: number): Observable<ICategory[]> {
+    return this.http.get<ICategory[]>(`${this.apiUrl}/categories?page=${page}&pageSize=${pageSize}`);
   }
 
 
-  deleteCategory(id: number): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/categories/${id}`);
+  SDelete(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/api/Category/SoftDelete/${id}`);
   }
 
-
-  deleteAll(): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/categories`);
+  softDelete(id: number): Observable<any> {
+    const body = { isDeleted: true };
+    return this.http.patch(`${this.apiUrl}/categories/${id}/soft-delete`, body);
   }
 
-
-  getCategoriesByGenderWithPagination(gender: string, pageNumber: number, pageSize: number): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(`${environment.apiUrl}/categories`, {
-      params: {
-        gender: gender,
-        pageNumber: pageNumber.toString(),
-        pageSize: pageSize.toString()
-      }
-    });
-  }
 }
 

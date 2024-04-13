@@ -1,0 +1,67 @@
+<!-- <div class="container" style="margin-top: 70px;">
+   <div class="row">
+      <div class="col-sm-8 offset-sm-2">
+        <form (submit)="addCategory()">
+          <div class="form-group">
+            <label for="name">Category Name</label>
+            <input [(ngModel)]="category.name" type="text" name="name" class="form-control" id="name" placeholder="Enter category name">
+          </div>
+          <div class="form-group">
+            <label for="subCategory">Subcategory</label>
+            <select [(ngModel)]="category.subCategory" name="subCategory" class="form-control" id="subCategory">
+               <option *ngFor="let subCategory of getSubCategories()" [value]="subCategory.value">{{ subCategory.name }}</option>
+            </select>
+           </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea [(ngModel)]="category.description" name="description" class="form-control" id="description" placeholder="Enter description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="categoryImage">Category Image</label>
+            <input type="file" (change)="onFileSelected($event)" name="categoryImage" class="form-control-file" id="categoryImage">
+          </div>
+          <button type="submit" class="btn btn-primary">Add Category</button>
+        </form>
+      </div>
+   </div>
+  </div>
+   -->
+
+
+
+   <div class="container-fluid p-4" >
+    <div class="row">
+       <div class="col-sm-8 offset-sm-2">
+         <form (submit)="addCategory()">
+           <div class="form-group">
+             <label for="name" class="p-2">Category Name</label>
+             <input [(ngModel)]="category.name" type="text" name="name" class="form-control" id="name" >
+           </div>
+           <div class="form-group">
+             <label for="subCategory" class="p-2">Subcategory</label>
+             <select [(ngModel)]="category.subCategory" name="subCategory" class="form-control" id="subCategory">
+                <option *ngFor="let subCategory of getSubCategories()" [value]="subCategory.value">{{ subCategory.name }}</option>
+             </select>
+            </div>
+           <div class="form-group">
+             <label for="description" class="p-2">Description</label>
+             <textarea [(ngModel)]="category.description" name="description" class="form-control" id="description"></textarea>
+           </div>
+
+           <div class="form-group">
+             <label for="ar_Name" class="p-2">Arabic Name</label>
+             <input [(ngModel)]="category.ar_Name" type="text" name="ar_Name" class="form-control" id="ar_Name" >
+           </div>
+           <div class="form-group">
+             <label for="ar_Description" class="p-2">Arabic Description</label>
+             <textarea [(ngModel)]="category.ar_Description" name="ar_Description" class="form-control" id="ar_Description" ></textarea>
+           </div>
+           <div class="form-group">
+            <label for="categoryImage" class="my-2 d-block">Category Image</label>
+            <input type="file" (change)="onFileSelected($event)" name="categoryImage" class="form-control-file" id="categoryImage">
+          </div>
+           <button  type="submit" class="btn btn-primary mt-3">Add Category</button>
+         </form>
+       </div>
+    </div>
+ </div>
