@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SubCategory } from '../../../Models/sub-category';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-category',
@@ -26,7 +27,7 @@ export class AddCategoryComponent {
     image: null
   };
 
-  constructor(private categoryService: CategoryService, private router: Router) { }
+  constructor(private location: Location, private categoryService: CategoryService, private router: Router) { }
 
   onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0] ?? null;
@@ -64,6 +65,10 @@ export class AddCategoryComponent {
     return Object.keys(SubCategory)
       .filter(key => isNaN(Number(key))) // Filter out numeric keys
       .map(key => ({ name: key, value: SubCategory[key as keyof typeof SubCategory] }));
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

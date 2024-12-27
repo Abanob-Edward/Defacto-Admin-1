@@ -33,11 +33,7 @@ export class UpdateItemComponent implements OnInit {
   constructor(private route: ActivatedRoute, private itemService: ItemService, private router: Router, private _ColorService: ColorService, private _SizeService: SizeService, private location: Location) { }
 
   ngOnInit(): void {
-    const lastNavigation = this.router.lastSuccessfulNavigation;
-    if (lastNavigation && lastNavigation.extras && lastNavigation.extras.state) {
-      this.item = lastNavigation.extras.state['item'];
-    }
-
+    
     this._SizeService.getAllSizes().subscribe(sizes => {
       this.sizes = sizes.entities;
     });
@@ -45,12 +41,21 @@ export class UpdateItemComponent implements OnInit {
     this._ColorService.getColors().subscribe(colors => {
       this.colors = colors.entities;
     });
+
+    const lastNavigation = this.router.lastSuccessfulNavigation;
+    if (lastNavigation && lastNavigation.extras && lastNavigation.extras.state) {
+      this.item = lastNavigation.extras.state['item'];
+    }
+
+    this.route.queryParams.subscribe(params => {
+      this.item.colorID = params['colorID'];
+      this.item.colorName = params['colorName'];
+    });
   }
 
   updateItem(): void {
     this.itemService.updateItem(this.item).subscribe({
       next: (response) => {
-        // Handle successful update
         const lastNavigation = this.router.lastSuccessfulNavigation;
         if (lastNavigation && lastNavigation.extras && lastNavigation.extras.state) {
           this.item = lastNavigation.extras.state['item'];
@@ -63,14 +68,11 @@ export class UpdateItemComponent implements OnInit {
     });
   }
 
-
+  goBack() {
+    this.location.back();
+  }
 
 }
-
-
-
-
-
 
 
 

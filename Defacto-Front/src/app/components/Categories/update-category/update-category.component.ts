@@ -5,6 +5,7 @@ import { CategoryService } from '../../../services/category.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SubCategory } from '../../../Models/sub-category';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-category',
@@ -26,6 +27,7 @@ export class UpdateCategoryComponent implements OnInit {
   };
 
   constructor(
+    private location: Location,
     private categoryService: CategoryService,
     private router: Router,
     private route: ActivatedRoute
@@ -75,6 +77,10 @@ export class UpdateCategoryComponent implements OnInit {
     return Object.keys(SubCategory)
       .filter(key => isNaN(Number(key))) // Filter out numeric keys
       .map(key => ({ name: key, value: SubCategory[key as keyof typeof SubCategory] }));
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

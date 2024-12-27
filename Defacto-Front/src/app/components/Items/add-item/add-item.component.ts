@@ -2,15 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ItemService } from '../../../services/item.service';
-import { ApiItem } from '../../../Models/api-item';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IItem } from '../../../Models/iitem';
-import { IColor } from '../../../Models/icolor';
-import { ISize } from '../../../Models/isize';
 import { ColorService } from '../../../services/color.service';
 import { SizeService } from '../../../services/size.service';
 import { Location } from '@angular/common';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-item',
@@ -34,7 +30,7 @@ export class AddItemComponent implements OnInit {
     productID: 0
   };
 
-  constructor(private location: Location ,private route: ActivatedRoute, private itemService: ItemService, private _ColorService: ColorService, private _SizeService: SizeService, private router: Router) { }
+  constructor(private location: Location, private route: ActivatedRoute, private itemService: ItemService, private _ColorService: ColorService, private _SizeService: SizeService, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -49,23 +45,25 @@ export class AddItemComponent implements OnInit {
       this.colors = colors.entities;
     });
 
-    
+
 
   }
 
   addItem(): void {
     this.itemService.addItem(this.item).subscribe({
-       next: (response) => {
-         // Navigate back to the previous page after successfully adding the item
-         this.location.back();
-       },
-       error: (error) => {
-         // Handle the error appropriately
-         console.error('Error adding item:', error);
-       }
+      next: (response) => {
+        // Navigate back to the previous page after successfully adding the item
+        // this.location.back();
+      },
+      error: (error) => {
+        // Handle the error appropriately
+        this.location.back();
+      }
     });
-   }
-   
+  }
 
-  
+  goBack() {
+    this.location.back();
+  }
+
 }

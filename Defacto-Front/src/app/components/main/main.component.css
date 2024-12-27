@@ -1,8 +1,9 @@
-*{
+* {
   margin: 0;
-  padding:0 ;
+  padding: 0;
 }
-.header{
+
+.header {
   width: 100%;
 }
 
@@ -10,9 +11,13 @@
   width: 18%;
   position: fixed;
   top: 100px; /* Adjust based on your header height */
-  /* bottom: 0;
+/* bottom: 0;
   left: 0;
 } */
+
+.side-nav-bar {
+  min-height: 90vh;
+}
 
 /* .main-content {
   width: 82%;
@@ -24,7 +29,7 @@
   .side-nav {
     width: 15%;
     position: static; /* Remove fixed positioning for smaller screens */
-    /* top: auto;
+/* top: auto;
     bottom: auto;
   }
   .main-content {

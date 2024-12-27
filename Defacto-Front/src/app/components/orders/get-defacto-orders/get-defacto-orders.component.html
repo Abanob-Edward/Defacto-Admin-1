@@ -21,8 +21,8 @@
            <td>{{ order?.totalPrice }}</td>
            <td>{{ getStatusName(order?.state) }}</td>
            <td>
-             <button class="btn btn-success me-2" [routerLink]="['/OrderStatus',order.id]">Change Status</button>
-             <button class="btn btn-dark" [routerLink]="['/GetItemForOrder', order.id]">View Items</button>
+            <button class="btn btn-success me-2" [routerLink]="['/OrderStatus', order.id]" [queryParams]="{ state: order.state }">Change Status</button>
+            <button class="btn btn-dark" [routerLink]="['/GetItemForOrder', order.id]">View Items</button>
            </td>
          </tr>
        </tbody>

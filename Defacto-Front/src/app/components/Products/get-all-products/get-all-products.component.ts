@@ -8,6 +8,7 @@ import { ApiIProduct } from '../../../Models/api-iproduct';
 import { Observable, map } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { ApiProductsService } from '../../../services/api-products.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -26,9 +27,10 @@ export class GetAllProductsComponent implements OnInit {
   itemsPerPage: number = 12;
 
   constructor(
+    private location: Location,
     private apiProductsService: ApiProductsService,
     private categoryService: CategoryService,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -57,7 +59,7 @@ export class GetAllProductsComponent implements OnInit {
       });
     }
   }
-  
+
 
   Delete(id: number): void {
     this.apiProductsService.SDelete(id).subscribe({
@@ -67,7 +69,6 @@ export class GetAllProductsComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error in deleting product', err);
-        this.router.navigateByUrl(`/GetAllCategories`);
       }
     });
   }
@@ -82,5 +83,9 @@ export class GetAllProductsComponent implements OnInit {
   nextPage(): void {
     this.currentPage++;
     this.getAllProducts(this.currentPage, this.itemsPerPage);
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

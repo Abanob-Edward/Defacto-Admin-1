@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-3">
   <!-- <h2 class="mb-4">Product Details</h2> -->
   <div class="card mb-3">
     <div class="card-body">
@@ -38,7 +38,7 @@
           <td>{{ item.colorName }}</td>
           <td>
             <button class="btn btn-primary" [routerLink]="['/update-item', item.id]"
-              [state]="{ item: item }">Update</button>&nbsp;
+              [state]="{ item: item }"  [queryParams]="{ colorID: item.colorID, colorName: item.colorName, size: item.sizeName }">Update</button>&nbsp;
             <button class="btn btn-danger" (click)="Delete(item.id)">&nbsp;Delete</button>
           </td>
           <!-- <td>{{ item.isForDefacto ? 'Yes' : 'No' }}</td> -->
@@ -49,6 +49,9 @@
   <ng-template #noItems>
     <p class="text-center">No items found for this product.</p>
   </ng-template>
-  <button class="btn btn-success" [routerLink]="['/add-item', product.id]" [state]="{ product: product }">Add
-    Item</button>
+  <button class="btn btn-success" [routerLink]="['/add-item', product.id]"
+    [state]="{ product: product }">AddItem</button>
+  <div>
+    <button class="btn btn-secondary mt-1" (click)="goBack()">Back</button>
+  </div>
 </div>

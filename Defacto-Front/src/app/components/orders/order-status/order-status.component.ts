@@ -23,6 +23,10 @@ export class OrderStatusComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.orderId = +params['id'];
     });
+
+    this.route.queryParams.subscribe(params => {
+      this.status = params['state'];
+    });
   }
 
   getStatusString(status: OrderStatus): string {

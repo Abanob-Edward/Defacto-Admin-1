@@ -5,6 +5,7 @@ export interface IOrder {
     price: number;
     sizeName: string;
     colorName: string;
+    productName: string;
   }[];
   count: number;
 }

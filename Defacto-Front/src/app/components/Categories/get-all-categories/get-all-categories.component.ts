@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ICategoryResponse } from '../../../Models/icategory-response';
 import { SubCategory } from '../../../Models/sub-category';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-get-all-categories',
@@ -15,11 +16,11 @@ import { SubCategory } from '../../../Models/sub-category';
   styleUrl: './get-all-categories.component.css'
 })
 export class GetAllCategoriesComponent implements OnInit {
-  categories: ICategoryResponse[]=[];
+  categories: ICategoryResponse[] = [];
   page: number = 1;
   pageSize: number = 5;
 
-  constructor(private _CategoryService: CategoryService) { }
+  constructor(private location: Location, private _CategoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.getAll();
@@ -78,9 +79,13 @@ export class GetAllCategoriesComponent implements OnInit {
   //     .filter(key => isNaN(Number(key))) // Filter out numeric keys
   //     .map(key => ({ name: key, value: SubCategory[key as keyof typeof SubCategory] }));
   // }
-   
+
   getSubCategoryName(subCategoryValue: number): string {
     return SubCategory[subCategoryValue];
-   }
-   
+  }
+
+  goBack() {
+    this.location.back();
+  }
+
 }

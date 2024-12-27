@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ItemService } from '../../../services/item.service';
-import { ApiIProduct } from '../../../Models/api-iproduct';
 import { FormsModule } from '@angular/forms';
-import { ApiItem } from '../../../Models/api-item';
 import { ApiProductsService } from '../../../services/api-products.service';
-import { Igetproduct } from '../../../Models/IGetProduct';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-in-item',
@@ -23,6 +20,7 @@ export class ProductInItemComponent implements OnInit {
   product: any; // Property to hold the product data
 
   constructor(
+    private location: Location,
     private route: ActivatedRoute,
     private itemService: ItemService,
     private router: Router,
@@ -36,6 +34,7 @@ export class ProductInItemComponent implements OnInit {
       this.loadProduct();
     });
   }
+
 
   loadItems(): void {
     const itemsPerPage = 12;
@@ -66,6 +65,10 @@ export class ProductInItemComponent implements OnInit {
         console.error('Error in deleting product', err);
       }
     });
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

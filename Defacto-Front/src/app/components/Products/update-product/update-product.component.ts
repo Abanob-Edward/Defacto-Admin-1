@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
 import { IProduct } from '../../../Models/iproduct';
 import { SubCategory } from '../../../Models/sub-category';
-
 import { CategoryService } from '../../../services/category.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiProductsService } from '../../../services/api-products.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -38,6 +37,7 @@ export class UpdateProductComponent implements OnInit {
   selectedGender: SubCategory | null = null;
 
   constructor(
+    private location: Location,
     private router: Router,
     private productsService: ApiProductsService,
     private categoryService: CategoryService // Assuming you have a CategoryService
@@ -116,6 +116,10 @@ export class UpdateProductComponent implements OnInit {
     return Object.keys(SubCategory)
       .filter(key => isNaN(Number(key)))
       .map(key => ({ name: key, value: SubCategory[key as keyof typeof SubCategory] }));
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

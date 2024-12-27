@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IProduct } from '../../../Models/iproduct';
-
+import { Location } from '@angular/common';
 import { CategoryService } from '../../../services/category.service';
 import { ICategory } from '../../../Models/icategory';
 import { FormsModule } from '@angular/forms';
@@ -38,7 +38,7 @@ export class AddProductComponent implements OnInit {
     ar_Title: ''
   };
 
-  constructor(private productsService: ApiProductsService, private router: Router, private categoryService: CategoryService) { }
+  constructor(private location: Location,private productsService: ApiProductsService, private router: Router, private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.getAllCategories();
@@ -92,7 +92,7 @@ export class AddProductComponent implements OnInit {
     this.productsService.createProduct(formData).subscribe({
       next: (response) => {
         console.log(response);
-        this.router.navigateByUrl(`/get-all-products`);
+        this.router.navigateByUrl(`/GetAllProducts`);
       },
       error: (error) => {
         console.error(error);
@@ -112,9 +112,7 @@ export class AddProductComponent implements OnInit {
   }
 
 
-  // getCategoryName(categoryId: number): string {
-  //   const category = this.categories.find(cat => cat.id === categoryId);
-  //   return category ? category.name : '';
-  // }
-
+  goBack() {
+    this.location.back();
+  }
 }

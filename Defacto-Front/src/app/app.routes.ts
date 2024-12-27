@@ -30,8 +30,8 @@ import { ChartComponent } from './components/Charts/chart/chart.component';
 import { OrderChartComponent } from './components/Charts/chart/order-chart/order-chart.component';
 
 export const routes: Routes = [
-  // { path: '', redirectTo: 'Login', pathMatch: 'full' },
-  // { path: 'Login', component: LoginComponent },
+  { path: '', redirectTo: 'Login', pathMatch: 'full' },
+  { path: 'Login', component: LoginComponent },
   {
     path: '',
     canActivate: [AuthGuard],

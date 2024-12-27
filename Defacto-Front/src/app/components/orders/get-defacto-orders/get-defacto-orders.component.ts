@@ -34,8 +34,4 @@ export class GetDefactoOrdersComponent implements OnInit {
     return OrderStatus[status];
   }
 
-
-
-
-
 }

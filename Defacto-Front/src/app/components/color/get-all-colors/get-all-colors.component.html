@@ -1,13 +1,37 @@
-<div class="container">
-  <table class="table table-striped">
-    <thead class="thead-dark">
+<div class="container ">
+  <table class="table table-striped ">
+    <thead class="thead-dark ">
       <tr>
+       <th></th>
+       <th></th>
+       <th></th>
+
         <th>Name</th>
+       <th></th>
+       <th></th>
+       <th></th>
+       <th></th>
+       <th></th>
+       <th></th>
+       <th></th>
+       <th>Action</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let color of colors">
+        <td></td>
+        <td></td>
+        <td></td>
+
         <td>{{ color.name }}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+
         <td>
            <button (click)="deleteColor(color.id)" class="btn btn-danger">Delete</button>
         </td>

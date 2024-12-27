@@ -1,57 +1,59 @@
 <div class="container">
-  <h1>Update Product</h1>
+  <h5>Update Product</h5>
   <form (ngSubmit)="updateProduct()" class="needs-validation" novalidate>
-     <div class="form-group">
-       <label for="title">Title</label>
-       <input type="text" class="form-control" id="title" [(ngModel)]="product.title" name="title" required>
-       <div class="invalid-feedback">Please provide a title.</div>
-     </div>
-     <div class="form-group">
-       <label for="subCategory">Gender</label>
-       <select [(ngModel)]="selectedGender" name="subCategory" class="form-control" id="subCategory" required>
-         <option *ngFor="let subCategory of getSubCategories()" [value]="subCategory.value">{{ subCategory.name }}</option>
-       </select>
-       <div class="invalid-feedback">Please select a gender.</div>
-     </div>
-     <div class="form-group">
-       <label for="categoryId">Category</label>
-       <select [(ngModel)]="product.categoryId" name="categoryId" class="form-control" id="categoryId" required>
-         <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
-       </select>
-       <div class="invalid-feedback">Please select a category.</div>
-     </div>
-     <div class="form-group">
-       <label for="code">Code</label>
-       <input type="text" class="form-control" id="code" [(ngModel)]="product.code" name="code" required>
-       <div class="invalid-feedback">Please provide a code.</div>
-     </div>
-     <div class="form-group">
-       <label for="description">Description</label>
-       <textarea class="form-control" id="description" [(ngModel)]="product.description" name="description" required></textarea>
-       <div class="invalid-feedback">Please provide a description.</div>
-     </div>
-     <!-- Image upload fields -->
-     <div class="form-group">
-       <label for="productImage1">Product Image 1</label>
-       <input type="file" class="form-control-file" id="productImage1" (change)="onFileSelected($event, 1)" required>
-       <div class="invalid-feedback">Please upload an image.</div>
-     </div>
-     <div class="form-group">
-       <label for="productImage2">Product Image 2</label>
-       <input type="file" class="form-control-file" id="productImage2" (change)="onFileSelected($event, 2)" required>
-       <div class="invalid-feedback">Please upload an image.</div>
-     </div>
-     <div class="form-group">
-       <label for="productImage3">Product Image 3</label>
-       <input type="file" class="form-control-file" id="productImage3" (change)="onFileSelected($event, 3)" required>
-       <div class="invalid-feedback">Please upload an image.</div>
-     </div>
-     <div class="form-group">
-       <label for="productImage4">Product Image 4</label>
-       <input type="file" class="form-control-file" id="productImage4" (change)="onFileSelected($event, 4)" required>
-       <div class="invalid-feedback">Please upload an image.</div>
-     </div>
-     <button type="submit" class="btn btn-primary">Update</button>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" [(ngModel)]="product.title" name="title" required>
+      <div class="invalid-feedback">Please provide a title.</div>
+    </div>
+    <div class="form-group">
+      <label for="subCategory">Gender</label>
+      <select [(ngModel)]="selectedGender" name="subCategory" class="form-control" id="subCategory" required>
+        <option *ngFor="let subCategory of getSubCategories()" [value]="subCategory.value">{{ subCategory.name }}
+        </option>
+      </select>
+      <div class="invalid-feedback">Please select a gender.</div>
+    </div>
+    <div class="form-group">
+      <label for="categoryId">Category</label>
+      <select [(ngModel)]="product.categoryId" name="categoryId" class="form-control" id="categoryId" required>
+        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+      </select>
+      <div class="invalid-feedback">Please select a category.</div>
+    </div>
+    <div class="form-group">
+      <label for="code">Code</label>
+      <input type="text" class="form-control" id="code" [(ngModel)]="product.code" name="code" required>
+      <div class="invalid-feedback">Please provide a code.</div>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" [(ngModel)]="product.description" name="description"
+        required></textarea>
+      <div class="invalid-feedback">Please provide a description.</div>
+    </div>
+    <!-- Image upload fields -->
+    <div class="form-group">
+      <label for="productImage1">Product Image 1</label>
+      <input type="file" class="form-control-file" id="productImage1" (change)="onFileSelected($event, 1)" required>
+      <div class="invalid-feedback">Please upload an image.</div>
+    </div>
+    <div class="form-group">
+      <label for="productImage2">Product Image 2</label>
+      <input type="file" class="form-control-file" id="productImage2" (change)="onFileSelected($event, 2)" required>
+      <div class="invalid-feedback">Please upload an image.</div>
+    </div>
+    <div class="form-group">
+      <label for="productImage3">Product Image 3</label>
+      <input type="file" class="form-control-file" id="productImage3" (change)="onFileSelected($event, 3)" required>
+      <div class="invalid-feedback">Please upload an image.</div>
+    </div>
+    <div class="form-group">
+      <label for="productImage4">Product Image 4</label>
+      <input type="file" class="form-control-file" id="productImage4" (change)="onFileSelected($event, 4)" required>
+      <div class="invalid-feedback">Please upload an image.</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
   </form>
- </div>
- 
+  <button class="btn btn-secondary mb-3 my-2" (click)="goBack()">Back</button>
+</div>
